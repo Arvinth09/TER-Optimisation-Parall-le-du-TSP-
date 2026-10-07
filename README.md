@@ -19,7 +19,7 @@ L'objectif est d'améliorer le temps d'exécution des algorithmes tout en conser
 
 ---
 
-## 🔬 Méthodes étudiées
+## Méthodes étudiées
 
 Le projet porte notamment sur :
 
