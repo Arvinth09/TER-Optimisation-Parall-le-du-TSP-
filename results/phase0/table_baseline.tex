@@ -1,0 +1,29 @@
+% Tableau comparatif de la Phase 0 (Baseline) pour Berlin52
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Algorithme} & \textbf{Distance} & \textbf{Ecart (Gap \%)} & \textbf{Temps (ms)} \\ \hline
+Nearest Neighbor (Départ 0) & 8981 & +19,08\% & 5,04 ms \\ \hline
+Best Nearest Neighbor (Tous départs) & 8182 & +8,49\% & 181,49 ms \\ \hline
+2-opt Séquentiel (Baseline) & 7670 & +1,69\% & 96,71 ms \\ \hline
+\textbf{2-opt Lot + K-NN (Phase 1\&2)} & \textbf{7841} & \textbf{+3,97\%} & \textbf{42,81 ms} \\ \hline
+\end{tabular}
+\caption{Performance des algorithmes de base sur l'instance Berlin52 (Optimum : 7542)}
+\label{tab:baseline_berlin52}
+\end{table}
+
+% --- JUSTIFICATIONS ET ANALYSE POUR LE RAPPORT ---
+% 1. EFFICACITÉ DE LA RECHERCHE LOCALE : Le passage du Best NN au 2nd-opt montre un gain significatif 
+%    de qualité (8182 -> 7670), prouvant que la recherche locale est indispensable.
+% 2. COMPROMIS VITESSE/PRÉCISION (K-NN) : La version Lot + K-NN est plus rapide (42ms), mais un peu 
+%    moins précise (+3,97%) que le 2-opt complet. C'est le prix de la réduction spatiale.
+% 3. SPEEDUP ALGORITHMIQUE : Sur ch150, l'optimisation Batch + K-NN offre un Speedup de x12,1 
+%    par rapport au séquentiel (0,29s contre 3,51s).
+% 4. TRANSITION : Cette accélération massive justifie l'intérêt du parallélisme et du K-NN 
+%    qui seront exploités dans les phases de production suivantes.
+
+justifications : 
+ passer de 232ms (Best NN) à 94ms (2-opt) montre que la recherche locale est efficace, mais que sur une 
+ instance de 1000 villes, ces millisecondes vont devenir des secondes entières, justifiant ainsi tes phases 
+ de parallélisation (Phase 1, 2, 3). 

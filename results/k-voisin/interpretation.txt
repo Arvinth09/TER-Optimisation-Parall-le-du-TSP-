@@ -1,0 +1,14 @@
+### Pourquoi y a-t-il des croisements dans le tour ?
+
+L'algorithme du **Plus Proche Voisin (Nearest Neighbor)** est un algorithme dit "glouton" (greedy) : il choisit l'option la meilleure à l'instant T sans anticiper la suite.
+
+#### Analyse de l'algorithme :
+1. **Phase de confort :** Au début, l'algorithme relie facilement les villes proches les unes des autres.
+2. **Phase de contrainte :** À la fin, il ne reste que quelques villes éparpillées, souvent à l'opposé du point actuel.
+3. **Le croisement :** L'algorithme est alors forcé de faire de grands "sauts" pour rejoindre ces dernières villes et boucler le tour vers le point de départ. Ces segments traversent alors les chemins déjà créés.
+
+#### Conclusion pour le TER :
+* **Qualité :** Un tour optimal (distance la plus courte) ne possède JAMAIS de croisements en géométrie euclidienne.
+* **Prochaine étape :** Le **2-opt (Étape 0.4)** aura pour mission de repérer ces croisements et de les "défaire" pour réduire la distance globale. 
+
+C'est cette différence visuelle entre le tour "emmêlé" (NN) et le tour "propre" (2-opt) qui illustrera parfaitement l'efficacité de vos algorithmes d'optimisation.
